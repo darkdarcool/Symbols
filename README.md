@@ -12,6 +12,8 @@ The main motivation comes from when I first suggested it in a post on the replit
 
 You can't use un-published extensions yet. If you're apart of the beta and want to, the url is: https://Symbols.darkdarcool.repl.co
 
+<img src = "./tests/example.png" />
+
 # Can I help?
 
 Sorry! I'm not looking for help/other developers on the project. If I want help or want to add you to the project, I'll come to you
