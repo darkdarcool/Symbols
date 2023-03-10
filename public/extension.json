@@ -1,0 +1,17 @@
+{
+  "name": "Symbols",
+  "description": "A code extension for finding symbols in your code. Currently only supports plain mjs files(without JSX)",
+  "version": "0",
+  "tags": ["code"],
+  "icon": "./public/me.webp",
+  "supportEmail": "darkdarcool@gmail.com",
+  "website": "https://darkdarcool.me",
+  "longDescription": "A code extension for finding symbols in your code. Currently only supports plain mjs files(without JSX)",
+  "coverImages": [
+    {
+      "url": "./me.webp",
+      "label": "Symbols extension",
+      "path": "./public/me.webp"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+body {
+	background-color: #1C2333;
+	color: white;
+	font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.center {
+	display: flex;
+	align-items: center;
+	width: 80%;
+	height: 100vh;
+}
+
+.func-type {
+    float: left;
+    height: 20px;
+    margin-right: 8px;
+    /* background-color: #0d1117; */
+    border-radius: 5px;
+    font-size: 13px;
+  color: #c5a5ff;
+  cursor: pointer;
+}
+.func-name {
+  font-size: 13px;
+  color: white;
+}
+
+.func-with-children-type {
+    color: #c5a5ff;
+    font-size: 13px;
+}
+
+.func-child-name {
+  font-size: 13px;
+}
+
+.back_button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069;
+  cursor: pointer;
+}
+
