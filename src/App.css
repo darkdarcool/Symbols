@@ -28,6 +28,21 @@ body {
   color: #c5a5ff;
   cursor: pointer;
 }
+
+.func-type-hover {
+    float: left;
+    height: 20px;
+    margin-right: 8px;
+    /* background-color: #0d1117; */
+    border-radius: 5px;
+    font-size: 13px;
+  color: #c5a5ff;
+  cursor: pointer;
+}
+
+.func-type-hover:hover {
+  text-decoration: underline;
+}
 .func-name {
   font-size: 13px;
   color: white;

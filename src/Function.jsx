@@ -29,7 +29,9 @@ export default function Function(props) {
     setShowFuncChildren(!showFuncChildren)
   }
   let focus = () => {
-    props.focus(props.index, props.shouldEnlarge);
+    if (props.isChild != true) {
+      props.focus(props.index, props.shouldEnlarge);
+    }
   }
   let spacing = "";
   if (props.addTab) spacing = "margin-left: 30px; cursor: pointer;"
@@ -40,16 +42,16 @@ export default function Function(props) {
     <div>
         {!hasChildren ? (
           <div>
-            <div style = {spacing != "" ? CSSstring(spacing) : {}} className="func-type">{func.type} <span className = "func-name">{func.name}</span>({func.params.join(",")})
+            <div style = {spacing != "" ? CSSstring(spacing) : {}} className="func-type">{func.type} <span className = "func-name">{func.name}</span>({func.params.join(", ")})
             </div>
             </div>
         ) : (
       <div>
-          <div onClick = {focus} className="func-type">{func.type} <span className = "func-name">{func.name}</span>({func.params.join(",")})</div>
+          <div style = {spacing != "" ? CSSstring(spacing) : {}} onClick = {focus} className="func-type-hover">{func.type} <span className = "func-name">{func.name}</span>({func.params.join(",")})</div>
         {props.shouldEnlarge ? (
           <div>
             {props.func.children.map((func, i) => {
-            return <Function func = {func} index = {i} focus = {props.focus} shouldEnlarge = {false} addTab = {true}/>
+            return <Function func = {func} index = {i} focus = {props.focus} shouldEnlarge = {false} addTab = {true} isChild = {true} />
             })}
           </div>
         ) : (

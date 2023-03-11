@@ -1,4 +1,5 @@
 import * as walk from "acorn-walk";
+import * as jsxwalk from "acorn-jsx-walk";
 
 class Code {
   extractOnce(elem) {
@@ -17,10 +18,10 @@ class Code {
   }
   
   extractFunc(elem) {
+    if (elem == undefined) return;
+    if (elem.params == undefined) return;
     let rawParams = elem.params;
     let extract = new Code().extractFunc
-
-    
     let params = []
     if (rawParams.length != 0) {
       rawParams.forEach(param => {
@@ -29,6 +30,7 @@ class Code {
     }
     // get nested data
     let children = []
+    jsxwalk.extend(walk.base);
     walk.simple(elem.body, {
       FunctionDeclaration(node) {
         children.push(extract(node));
@@ -41,14 +43,21 @@ class Code {
     // console.log(JSON.stringify(body))
     let funcs = [];
     body.forEach(elem => {
+      let func = undefined;
+      console.log(elem);
       if (elem.type == "FunctionDeclaration") {
         funcs.push(this.extractFunc(elem))
       }
       else if (elem.type == "ExportNamedDeclaration" || elem.type == "ExportDefaultDeclaration") {
-        funcs.push(this.extractFunc(elem.declaration))
+        elem = elem.declaration;
+        if (elem.type == "FunctionDeclaration") funcs.push(this.extractFunc(elem));
+        else if (elem.type == "ClassDeclaration") funcs.push(this.extractClass(elem.body.body, elem))
+        
       } else if (elem.type == "ClassDeclaration") {
        funcs.push(this.extractClass(elem.body.body, elem))
       }
+      if (func != undefined) funcs.push(func)
+
     })
     return funcs;
     
@@ -66,42 +75,3 @@ class Code {
 }
 
 export default new Code()
-
-/*
-body
-: 
-Node2 {type: 'ClassBody', start: 10, end: 22, body: Array(1)}
-end
-: 
-22
-id
-: 
-Node2
-end
-: 
-9
-name
-: 
-"Foo"
-start
-: 
-6
-type
-: 
-"Identifier"
-[[Prototype]]
-: 
-Object
-start
-: 
-0
-superClass
-: 
-null
-type
-: 
-"ClassDeclaration"
-[[Prototype]]
-: 
-Object
-  */

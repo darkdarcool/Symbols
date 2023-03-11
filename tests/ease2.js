@@ -1,3 +1,5 @@
-function bro() {
-  
+class Animal {
+  name() {
+    
+  }
 }

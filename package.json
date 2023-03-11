@@ -17,6 +17,7 @@
     "acorn": "^8.8.2",
     "acorn-class-fields": "^1.0.0",
     "acorn-jsx": "^5.3.2",
+    "acorn-jsx-walk": "^2.0.0",
     "acorn-walk": "^8.2.0",
     "esprima": "^4.0.1",
     "esprima-next": "^5.8.4"

@@ -31,8 +31,6 @@ export default class CodeView extends React.Component {
 
   async componentDidMount() {
     this.interval = setInterval(this.getContent, 1500);
-    console.log("damn")
-    console.log(await getRepl());
   }
 
   getContent = async () => {
@@ -53,10 +51,13 @@ export default class CodeView extends React.Component {
     try {
      symbols = getFunctions(this.state.content)
     } catch(e) {
+      console.log("Error parsing code");
+      console.error(e); // log error
       return (
         <div>
           <h2>{this.props.fp}</h2>
         <p>Error parsing code</p>
+          <p> {e.toString()} </p>
           </div>
       )
     }
