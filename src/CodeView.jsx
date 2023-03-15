@@ -47,6 +47,14 @@ export default class CodeView extends React.Component {
     this.setState({ isFocused: true, focused: index })
   }
   render() {
+    let isJs = this.props.fp.endsWith("jsx") || this.props.fp.endsWith("js");
+    if (!isJs) {
+      return (
+        <>
+          <p>Currently, only JavaScript or JSX files or supported</p>
+        </>
+      )
+    }
     let symbols = [];
     try {
      symbols = getFunctions(this.state.content)

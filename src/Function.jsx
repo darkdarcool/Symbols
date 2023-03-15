@@ -22,7 +22,9 @@ export default function Function(props) {
             ? document.referrer
             : document.location.href;
   let hasChildren = false
-  if (func.children.length != 0) hasChildren = true; // has nested stuff
+  if (func.children != undefined) {
+    if (func.children.length != 0) hasChildren = true; // has nested stuff
+  }
   let children = [...func.children];
     const [showFuncChildren, setShowFuncChildren] = React.useState(true)
   let onClick = () => {
@@ -35,8 +37,6 @@ export default function Function(props) {
   }
   let spacing = "";
   if (props.addTab) spacing = "margin-left: 30px; cursor: pointer;"
-  let arrow = "⬇️";
-  if (showFuncChildren) arrow = "➡️";
   
   return (
     <div>

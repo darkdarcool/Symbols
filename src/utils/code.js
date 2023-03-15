@@ -43,19 +43,25 @@ class Code {
     // console.log(JSON.stringify(body))
     let funcs = [];
     body.forEach(elem => {
+      
       let func = undefined;
-      console.log(elem);
       if (elem.type == "FunctionDeclaration") {
         funcs.push(this.extractFunc(elem))
       }
       else if (elem.type == "ExportNamedDeclaration" || elem.type == "ExportDefaultDeclaration") {
         elem = elem.declaration;
-        if (elem.type == "FunctionDeclaration") funcs.push(this.extractFunc(elem));
+        if (elem.type == "FunctionDeclaration" || elem.type == "ArrowFunctionExpression") funcs.push(this.extractFunc(elem));
         else if (elem.type == "ClassDeclaration") funcs.push(this.extractClass(elem.body.body, elem))
-        
       } else if (elem.type == "ClassDeclaration") {
        funcs.push(this.extractClass(elem.body.body, elem))
-      }
+      } else if (elem.type == "VariableDeclaration") {
+          elem = elem.declarations[0];
+           if (elem.init.type == "FunctionDeclaration" || elem.init.type == "ArrowFunctionExpression") {
+          elem.init.id = { name: elem.id.name } // add line and col later
+          funcs.push(this.extractFunc(elem.init))
+           }
+          
+        }
       if (func != undefined) funcs.push(func)
 
     })

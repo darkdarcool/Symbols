@@ -9,14 +9,16 @@ function App() {
 
   const replitHandshake = async () => {
     try {
-      await replit.init({ permissions: [
+      await replit.init({ 
+        permissions: [
           "writeFile",
           "readFile",
           "readDirectory",
           "createDirectory",
           "readReplInfo",
           "readUserInfo"
-      ] });
+        ] 
+      });
       setIsConnected(true);
     } catch (error) {
       setError(error);
